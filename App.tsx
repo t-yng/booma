@@ -1,6 +1,7 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, Button, Dimensions } from 'react-native';
 import { Header } from 'react-native-elements';
+import AddBookButton from './components/AddBookButton';
 import SearchBox from './components/SearchBox';
 import ActionSheet from 'react-native-actionsheet';
 
@@ -17,15 +18,15 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <View>
+      <View style={styles.app}>
         <Header
           containerStyle={styles.header}
           centerComponent={{text: '本棚'}}
         />
         <SearchBox/>
-        <Button
-          title="登録"
+        <AddBookButton
           onPress={this.showActionSheet}
+          containerStyle={styles.addBookButton}
         />
         <ActionSheet
           ref={(o: any) => this.actionSheet = o}
@@ -40,8 +41,16 @@ export default class App extends React.Component {
 }
 
 const styles = StyleSheet.create({
+  app: {
+    height: Dimensions.get('window').height,
+  },
   header: {
     backgroundColor: '#f8f8f8',
     marginBottom: 20
+  },
+  addBookButton: {
+    bottom: 30,
+    right: 30,
+    position: 'absolute',
   },
 });
