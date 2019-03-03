@@ -7,7 +7,9 @@ import {
 } from 'react-native';
 import { Icon } from 'react-native-elements';
 
-interface Props {}
+interface Props {
+  onSubmitEditing: (text: string) => void
+}
 interface State {
   text: string
 }
@@ -42,7 +44,10 @@ export default class SearchBox extends React.Component<Props, State> {
             style={styles.textInput}
             placeholder="本のタイトル、著者名"
             value={this.state.text}
-            onChangeText={(text) => this.setState({ text })}
+            onSubmitEditing={(event) => {
+              this.props.onSubmitEditing(event.nativeEvent.text);
+            }}
+            onChangeText={(text: string) => this.setState({ text })}
             ref={(input) => this.textInput = input}
           />
           <Icon
