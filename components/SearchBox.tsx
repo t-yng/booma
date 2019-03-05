@@ -8,7 +8,7 @@ import {
 import { Icon } from 'react-native-elements';
 
 interface Props {
-  onSubmitEditing: (text: string) => void
+  onSubmitEditing?: (text: string) => void
 }
 interface State {
   text: string
@@ -45,7 +45,9 @@ export default class SearchBox extends React.Component<Props, State> {
             placeholder="本のタイトル、著者名"
             value={this.state.text}
             onSubmitEditing={(event) => {
-              this.props.onSubmitEditing(event.nativeEvent.text);
+              if(this.props.onSubmitEditing != null) {
+                this.props.onSubmitEditing(event.nativeEvent.text);
+              }
             }}
             onChangeText={(text: string) => this.setState({ text })}
             ref={(input) => this.textInput = input}
@@ -74,6 +76,7 @@ const iconStyle = {
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
+    paddingBottom: 20,
   },
   searchBox: {
     alignItems: 'center',
