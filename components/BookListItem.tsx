@@ -23,12 +23,14 @@ const BookListItem: React.SFC<Props> = ({
 
 const styles = StyleSheet.create({
   root: {
-    padding: 10,
+    paddingTop: 10,
+    paddingBottom: 10,
     paddingLeft: 30,
-    // height: 100,
+    paddingRight: 30,
     borderBottomWidth: 1,
     borderBottomColor: 'black',
     flexDirection: 'row',
+    flexWrap: 'wrap',
   },
   thumbnail: {
     width: 60,
@@ -38,6 +40,7 @@ const styles = StyleSheet.create({
   },
   meta: {
     marginLeft: 20,
+    flex: 3,
   },
   title: {
     marginBottom: 10,
