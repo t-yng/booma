@@ -43,6 +43,7 @@ export default class SearchBox extends React.Component<Props, State> {
           <TextInput
             style={styles.textInput}
             placeholder="本のタイトル、著者名"
+            returnKeyType="search"
             value={this.state.text}
             onSubmitEditing={(event) => {
               if(this.props.onSubmitEditing != null) {
