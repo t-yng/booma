@@ -4,6 +4,7 @@ import { Header } from 'react-native-elements';
 import SearchBox from '../components/SearchBox';
 import BookList from '../components/BookList';
 import Book from '../lib/Book';
+import Client from '../lib/api/books/client';
 
 interface Props {}
 interface State {
@@ -11,20 +12,19 @@ interface State {
 }
 
 export default class Search extends React.Component<Props, State> {
+  private client: Client;
 
   constructor(props: Props) {
     super(props);
     this.state = {
       books: [],
     }
+
+    this.client = new Client();
   }
 
-  onSubmitSearchText = (text: string)  => {
-    const books = [
-      new Book('ほげほげ', '柳倫浩'),
-      new Book('ふがふが', 'アタモト'),
-    ]
-
+  onSubmitSearchText = async (text: string)  => {
+    const books = await this.client.searchBooks(text);
     this.handleSearchResult(books);
   }
 
