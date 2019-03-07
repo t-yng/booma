@@ -1,6 +1,5 @@
 import React from 'react';
 import { StyleSheet, View, Dimensions } from 'react-native';
-import { Header } from 'react-native-elements';
 import SearchBox from '../components/SearchBox';
 import BookList from '../components/BookList';
 import Book from '../lib/Book';
@@ -12,6 +11,10 @@ interface State {
 }
 
 export default class Search extends React.Component<Props, State> {
+  static navigationOptions = {
+    title: '検索結果',
+  }
+
   private client: Client;
 
   constructor(props: Props) {
@@ -35,10 +38,6 @@ export default class Search extends React.Component<Props, State> {
   render() {
     return (
       <View style={styles.root}>
-        <Header
-          containerStyle={styles.header}
-          centerComponent={{text: '検索結果'}}
-        />
         <SearchBox onSubmitEditing={this.onSubmitSearchText}/>
         <BookList books={this.state.books}/>
       </View>
@@ -49,9 +48,5 @@ export default class Search extends React.Component<Props, State> {
 const styles = StyleSheet.create({
   root: {
     height: Dimensions.get('window').height,
-  },
-  header: {
-    backgroundColor: '#f8f8f8',
-    marginBottom: 20
   },
 });

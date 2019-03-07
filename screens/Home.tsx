@@ -1,11 +1,14 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, Dimensions } from 'react-native';
-import { Header } from 'react-native-elements';
+import { StyleSheet, View, Dimensions } from 'react-native';
 import AddBookButton from '../components/AddBookButton';
 import SearchBox from '../components/SearchBox';
 import ActionSheet from 'react-native-actionsheet';
+import { NavigationTransitionProps } from 'react-navigation';
 
-export default class Home extends React.Component {
+export default class Home extends React.Component<NavigationTransitionProps> {
+  static navigationOptions = {
+    title: '本棚',
+  }
   private actionSheet: any;
 
   showActionSheet = () => {
@@ -13,16 +16,15 @@ export default class Home extends React.Component {
   }
 
   onPressActionSheetButton = (index: number) => {
+    switch(index) {
+      case 0: this.props.navigation.navigate('Search');
+    }
     /* do something */
   }
 
   render() {
     return (
       <View style={styles.root}>
-        <Header
-          containerStyle={styles.header}
-          centerComponent={{text: '本棚'}}
-        />
         <SearchBox/>
         <AddBookButton
           onPress={this.showActionSheet}
@@ -44,12 +46,8 @@ const styles = StyleSheet.create({
   root: {
     height: Dimensions.get('window').height,
   },
-  header: {
-    backgroundColor: '#f8f8f8',
-    marginBottom: 20
-  },
   addBookButton: {
-    bottom: 30,
+    bottom: 100,
     right: 30,
     position: 'absolute',
   },
