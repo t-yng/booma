@@ -19,7 +19,6 @@ export default class Home extends React.Component<NavigationTransitionProps> {
     switch(index) {
       case 0: this.props.navigation.navigate('Search');
     }
-    /* do something */
   }
 
   render() {
