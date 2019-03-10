@@ -1,23 +1,25 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import Book from '../lib/Book';
 
 interface Props {
   book: Book,
+  onPress: (book: Book) => void
 }
 
 const BookListItem: React.SFC<Props> = ({
-  book
+  book,
+  onPress,
 }) => {
   return (
-    <View style={styles.root}>
+    <TouchableOpacity style={styles.root} onPress={() => onPress(book)}>
       <View style={styles.thumbnail}></View>
       <View style={styles.meta}>
         <Text style={styles.title}>{book.title}</Text>
         <Text style={styles.author}>{book.author}</Text>
         <View style={styles.readStatus}></View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
