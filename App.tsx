@@ -29,7 +29,6 @@ const MainNavigator = createStackNavigator(
     defaultNavigationOptions: {
       headerStyle: {
         backgroundColor: '#f8f8f8',
-        marginBottom: 20,
       },
     },
   },

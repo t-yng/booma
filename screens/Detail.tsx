@@ -5,45 +5,46 @@ import {
   View,
   Text,
 } from 'react-native';
-import {
-  Input,
-} from 'react-native-elements'
+import { Input } from 'react-native-elements'
 import { NavigationTransitionProps } from 'react-navigation';
+import ContentLayout from './ContentLayout';
 import Book from '../lib/Book';
 
 const Detail: React.SFC<NavigationTransitionProps> = ({
   navigation,
 }) => {
-  const book = navigation.getParam('book');
+  const book: Book = navigation.getParam('book');
   return(
-    <ScrollView contentContainerStyle={styles.root}>
-      <View style={styles.top}>
-        <View style={styles.thumbnail}></View>
-        <View style={styles.meta}>
-          <Text style={styles.title}>{book.title}</Text>
-          <Text style={styles.author}>{book.author}</Text>
-          <View style={styles.readStatus}></View>
+    <ContentLayout>
+      <ScrollView contentContainerStyle={styles.root}>
+        <View style={styles.top}>
+          <View style={styles.thumbnail}></View>
+          <View style={styles.meta}>
+            <Text style={styles.title}>{book.title}</Text>
+            <Text style={styles.author}>{book.author}</Text>
+            <View style={styles.readStatus}></View>
+          </View>
         </View>
-      </View>
-      <View style={styles.formItem}>
-        <Input
-          label="タグ"
-          editable={false}
-          inputContainerStyle={styles.tag}
-        ></Input>
-      </View>
+        <View style={styles.formItem}>
+          <Input
+            label="タグ"
+            editable={false}
+            inputContainerStyle={styles.tag}
+          />
+        </View>
+        <View style={styles.formItem}>
+          <Input
+            label="メモ"
+            multiline={true}
+            inputContainerStyle={styles.memo}
+          />
+        </View>
+        <View style={styles.formItem}>
+          <Input label="ISBN"></Input>
+        </View>
+      </ScrollView>
 
-      <View style={styles.formItem}>
-        <Input
-          label="メモ"
-          multiline={true}
-          inputContainerStyle={styles.memo}
-        />
-      </View>
-      <View style={styles.formItem}>
-        <Input label="ISBN"></Input>
-      </View>
-    </ScrollView>
+    </ContentLayout>
   );
 }
 
@@ -52,6 +53,7 @@ export default Detail;
 const styles = StyleSheet.create({
   root: {
     paddingLeft: 30,
+    paddingRight: 30,
   },
   top: {
     flexDirection: 'row',

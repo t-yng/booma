@@ -1,9 +1,10 @@
 import React from 'react';
 import { StyleSheet, View, Dimensions } from 'react-native';
+import { NavigationTransitionProps } from 'react-navigation';
+import ContentLayout from './ContentLayout';
 import AddBookButton from '../components/AddBookButton';
 import SearchBox from '../components/SearchBox';
 import ActionSheet from 'react-native-actionsheet';
-import { NavigationTransitionProps } from 'react-navigation';
 
 export default class Home extends React.Component<NavigationTransitionProps> {
   private actionSheet: any;
@@ -20,20 +21,22 @@ export default class Home extends React.Component<NavigationTransitionProps> {
 
   render() {
     return (
-      <View style={styles.root}>
-        <SearchBox/>
-        <AddBookButton
-          onPress={this.showActionSheet}
-          containerStyle={styles.addBookButton}
-        />
-        <ActionSheet
-          ref={(o: any) => this.actionSheet = o}
-          options={['検索結果から登録', 'Cancel']}
-          cancelButtonIndex={1}
-          destructiveButtonIndex={1}
-          onPress={this.onPressActionSheetButton}
-        />
-      </View>
+      <ContentLayout>
+        <View style={styles.root}>
+          <SearchBox/>
+          <AddBookButton
+            onPress={this.showActionSheet}
+            containerStyle={styles.addBookButton}
+          />
+          <ActionSheet
+            ref={(o: any) => this.actionSheet = o}
+            options={['検索結果から登録', 'Cancel']}
+            cancelButtonIndex={1}
+            destructiveButtonIndex={1}
+            onPress={this.onPressActionSheetButton}
+          />
+        </View>
+      </ContentLayout>
     );
   }
 }

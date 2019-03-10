@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Dimensions } from 'react-native';
 import { NavigationTransitionProps } from 'react-navigation';
+import ContentLayout from './ContentLayout';
 import SearchBox from '../components/SearchBox';
 import BookList from '../components/BookList';
 import Book from '../lib/Book';
@@ -37,10 +38,12 @@ export default class Search extends React.Component<NavigationTransitionProps, S
 
   render() {
     return (
-      <View style={styles.root}>
-        <SearchBox onSubmitEditing={this.onSubmitSearchText}/>
-        <BookList books={this.state.books} onPressBookItem={this.onPressBookItem}/>
-      </View>
+      <ContentLayout>
+        <View style={styles.root}>
+          <SearchBox onSubmitEditing={this.onSubmitSearchText}/>
+          <BookList books={this.state.books} onPressBookItem={this.onPressBookItem}/>
+        </View>
+      </ContentLayout>
     );
   }
 }
