@@ -11,10 +11,6 @@ interface State {
 }
 
 export default class Search extends React.Component<Props, State> {
-  static navigationOptions = {
-    title: '検索結果',
-  }
-
   private client: Client;
 
   constructor(props: Props) {

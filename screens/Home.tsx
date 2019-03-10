@@ -6,9 +6,6 @@ import ActionSheet from 'react-native-actionsheet';
 import { NavigationTransitionProps } from 'react-navigation';
 
 export default class Home extends React.Component<NavigationTransitionProps> {
-  static navigationOptions = {
-    title: '本棚',
-  }
   private actionSheet: any;
 
   showActionSheet = () => {

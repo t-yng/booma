@@ -1,12 +1,21 @@
-import React from 'react';
+import { createStackNavigator, createAppContainer } from 'react-navigation';
 import Home from './screens/Home';
 import Search from './screens/Search';
-import { createStackNavigator, createAppContainer } from 'react-navigation';
 
 const MainNavigator = createStackNavigator(
   {
-    Home: {screen: Home},
-    Search: {screen: Search},
+    Home: {
+      screen: Home,
+      navigationOptions: {
+        title: '本棚',
+      }
+    },
+    Search: {
+      screen: Search,
+      navigationOptions: {
+        title: '書籍検索'
+      }
+    },
   },
   {
     defaultNavigationOptions: {
