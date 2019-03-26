@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { Image } from 'react-native-elements';
 import Book from '../lib/Book';
 
 interface Props {
@@ -13,7 +14,10 @@ const BookListItem: React.SFC<Props> = ({
 }) => {
   return (
     <TouchableOpacity style={styles.root} onPress={() => onPress(book)}>
-      <View style={styles.thumbnail}></View>
+      <Image
+        source={{ uri: book.thumbnail }}
+        style={styles.thumbnail}
+      />
       <View style={styles.meta}>
         <Text style={styles.title}>{book.title}</Text>
         <Text style={styles.author}>{book.author}</Text>
@@ -37,7 +41,7 @@ const styles = StyleSheet.create({
   thumbnail: {
     width: 60,
     height: 80,
-    borderWidth: 1,
+    borderWidth: 0.5,
     borderColor: 'black',
   },
   meta: {

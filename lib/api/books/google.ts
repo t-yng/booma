@@ -104,6 +104,7 @@ const parse = (response: VolumeResponse): Book[] => {
       pageCount: volumeInfo.pageCount,
       isbn_10: isbn_10,
       isbn_13: isbn_13,
+      thumbnail: volumeInfo.imageLinks.thumbnail,
     });
   });
 

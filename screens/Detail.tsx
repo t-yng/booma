@@ -5,7 +5,7 @@ import {
   View,
   Text,
 } from 'react-native';
-import { Input } from 'react-native-elements'
+import { Input, Image } from 'react-native-elements'
 import { NavigationTransitionProps } from 'react-navigation';
 import ContentLayout from './ContentLayout';
 import Book from '../lib/Book';
@@ -18,7 +18,10 @@ const Detail: React.SFC<NavigationTransitionProps> = ({
     <ContentLayout>
       <ScrollView contentContainerStyle={styles.root}>
         <View style={styles.top}>
-          <View style={styles.thumbnail}></View>
+          <Image
+          source={{ uri: book.thumbnail }}
+          style={styles.thumbnail}
+          />
           <View style={styles.meta}>
             <Text style={styles.title}>{book.title}</Text>
             <Text style={styles.author}>{book.author}</Text>
@@ -77,7 +80,7 @@ const styles = StyleSheet.create({
   thumbnail: {
     width: 60,
     height: 80,
-    borderWidth: 1,
+    borderWidth: 0.5,
     borderColor: 'black',
   },
   meta: {
