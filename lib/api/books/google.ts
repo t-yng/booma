@@ -25,10 +25,10 @@ interface IndustryIdentifier {
 interface VolumeInfo {
   "title": string,
   "authors": string[],
-  "publisher": string,
+  "publisher"?: string,
   "publishedDate": string,
   "description": string,
-  "industryIdentifiers": IndustryIdentifier[],
+  "industryIdentifiers"?: IndustryIdentifier[],
   "readingModes": ReadingModes,
   "pageCount": number,
   "printType": string,
@@ -83,10 +83,28 @@ interface VolumeResponse {
 const parse = (response: VolumeResponse): Book[] => {
   const books = response.items.map((item: Item) => {
     const volumeInfo = item.volumeInfo;
-    const title = volumeInfo.title;
     const authors = (volumeInfo.authors) ? volumeInfo.authors : [''];
     const author = (authors[1]) ? authors[1] : authors[0];
-    return new Book(title, author);
+    let isbn_10, isbn_13;
+    const industryIdentifiers = (volumeInfo.industryIdentifiers) ? volumeInfo.industryIdentifiers : [];
+    for (const identifier of industryIdentifiers) {
+      switch(identifier.type) {
+        case 'ISBN_10': isbn_10 = identifier.identifier;
+                        break;
+        case 'ISBN_13': isbn_13 = identifier.identifier;
+                        break;
+      }
+    }
+
+    return new Book({
+      title: volumeInfo.title,
+      author: author,
+      publisher: volumeInfo.publisher,
+      publishedDate: volumeInfo.publishedDate,
+      pageCount: volumeInfo.pageCount,
+      isbn_10: isbn_10,
+      isbn_13: isbn_13,
+    });
   });
 
   return books;

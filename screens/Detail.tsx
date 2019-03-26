@@ -40,10 +40,24 @@ const Detail: React.SFC<NavigationTransitionProps> = ({
           />
         </View>
         <View style={styles.formItem}>
-          <Input label="ISBN"></Input>
+          <Input label="ISBN">{book.isbn}</Input>
+        </View>
+        <View style={styles.formItem}>
+          <Input label="出版社">{book.publisher}</Input>
+        </View>
+        <View style={styles.formItem}>
+          <Input label="発行年月日">{book.publishedDate}</Input>
+        </View>
+        <View style={styles.formItem}>
+          <Input label="ページ数">{book.pageCount}</Input>
+        </View>
+        <View style={styles.formItem}>
+          <Input label="登録日"></Input>
+        </View>
+        <View style={styles.formItem}>
+          <Input label="読了日"></Input>
         </View>
       </ScrollView>
-
     </ContentLayout>
   );
 }
@@ -77,12 +91,10 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   tag: {
-    borderColor: '#000',
     borderWidth: 1,
     height: 30,
   },
   memo: {
-    borderColor: '#000',
     borderWidth: 1,
     height: 60,
   },
